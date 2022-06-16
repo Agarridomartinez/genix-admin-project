@@ -1,0 +1,69 @@
+## Server port
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        name: genix-session
+        httpOnly: false
+  error:
+    whitelabel:
+      enabled: false
+
+app:
+  url: http://localhost:8080
+  frontUrl: http://localhost:3333
+  discord:
+    clientId: 822959351030874172
+    clientSecret: ESc3Wptg_vz-QRuBzZ4u-nemOmLOytTC
+    scope:
+      - identify
+      - email
+      - guilds
+    redirectUri: "http://localhost:8080/login/oauth2/code/discord"
+    clientName: Genix
+
+# Spring Boot configuration - MongoDB
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: genix
+      repositories:
+        type: auto
+      username: genix
+      password: z5PR1z4u5N6Di66B4ilgw687j8a2IFVHmqkGdh5D7Fc
+      auto-index-creation: true
+      authentication-database: admin
+  security:
+    oauth2:
+      client:
+        registration:
+          discord:
+            client-id: 822959351030874172
+            client-secret: ESc3Wptg_vz-QRuBzZ4u-nemOmLOytTC
+            clientAuthenticationMethod: post
+            authorizationGrantType: authorization_code
+            scope:
+              - identify
+              - email
+              - guilds
+            redirectUri: "http://localhost:8080/login/oauth2/code/discord"
+            clientName: Genix
+        provider:
+          discord:
+            authorizationUri: https://discordapp.com/api/oauth2/authorize
+            tokenUri: https://discordapp.com/api/oauth2/token
+            userInfoUri: https://discordapp.com/api/users/@me
+            usernameAttribute: id
+  rabbitmq:
+    host: localhost
+    username: genix
+    password: Gid9VnA0COc69Si570oTA53R710S23ZOVl2dwb2DfhpMVC7muA
+
+
+# Logging
+logging:
+  level:
+    web: DEBUG

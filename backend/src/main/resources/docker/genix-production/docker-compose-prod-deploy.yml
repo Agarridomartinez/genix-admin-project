@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  genix-admin:
+    image: mcolladomoreno/genix-admin:latest
+    restart: on-failure
+    container_name: genix-admin
+    ports:
+      - '8100:8100'
+networks:
+  default:
+    external:
+      name: ironmike

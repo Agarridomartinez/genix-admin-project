@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+  mongodb:
+    image: mongo
+    container_name: genix-admin-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: genix
+      MONGO_INITDB_ROOT_PASSWORD: z5PR1z4u5N6Di66B4ilgw687j8a2IFVHmqkGdh5D7Fc
+    volumes:
+      - genix-mongodbdata:/data/db
+    command: ["--auth"]
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: genix-admin-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: genix
+      RABBITMQ_DEFAULT_PASS: Gid9VnA0COc69Si570oTA53R710S23ZOVl2dwb2DfhpMVC7muA
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  genix-mongodbdata:
+
+networks:
+  default:
+    external:
+      name: ironmike

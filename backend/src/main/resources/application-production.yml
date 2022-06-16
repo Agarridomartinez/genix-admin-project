@@ -1,0 +1,70 @@
+## Server port
+server:
+  port: 8100
+  servlet:
+    session:
+      cookie:
+        name: genix-session
+        httpOnly: false
+        domain: genix.ironmike.es
+  error:
+    whitelabel:
+      enabled: false
+
+app:
+  url: https://api.genix.ironmike.es
+  frontUrl: https://genix.ironmike.es
+  discord:
+    clientId: 822959351030874172
+    clientSecret: ESc3Wptg_vz-QRuBzZ4u-nemOmLOytTC
+    scope:
+      - identify
+      - email
+      - guilds
+    redirectUri: "https://api.genix.ironmike.es/login/oauth2/code/discord"
+    clientName: Genix
+
+# Spring Boot configuration - MongoDB
+spring:
+  data:
+    mongodb:
+      host: genix-admin-mongodb
+      port: 27017
+      database: genix
+      repositories:
+        type: auto
+      username: genix
+      password: z5PR1z4u5N6Di66B4ilgw687j8a2IFVHmqkGdh5D7Fc
+      auto-index-creation: true
+      authentication-database: admin
+  security:
+    oauth2:
+      client:
+        registration:
+          discord:
+            client-id: 822959351030874172
+            client-secret: ESc3Wptg_vz-QRuBzZ4u-nemOmLOytTC
+            clientAuthenticationMethod: post
+            authorizationGrantType: authorization_code
+            scope:
+              - identify
+              - email
+              - guilds
+            redirectUri: "https://api.genix.ironmike.es/login/oauth2/code/discord"
+            clientName: Genix
+        provider:
+          discord:
+            authorizationUri: https://discordapp.com/api/oauth2/authorize
+            tokenUri: https://discordapp.com/api/oauth2/token
+            userInfoUri: https://discordapp.com/api/users/@me
+            usernameAttribute: id
+  rabbitmq:
+    host: genix-admin-rabbitmq
+    username: genix
+    password: Gid9VnA0COc69Si570oTA53R710S23ZOVl2dwb2DfhpMVC7muA
+# Logging
+logging:
+  level:
+    web: DEBUG
+
+
